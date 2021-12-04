@@ -1,0 +1,36 @@
+.member{
+    margin-top: 10px;
+}
+
+.member .member_list {
+    display: flex;
+}
+
+.member .member_name {
+    padding: 3px;
+    border-bottom: 2px solid #000000;
+}
+
+.member .member_username {
+    padding: 3px;
+    border-bottom: 2px solid #000000;
+}
+
+.member .member_age {
+    padding: 3px;
+    border-bottom: 2px solid #000000;
+}
+
+.member .member_sex {
+    padding: 3px;
+    border-bottom: 2px solid #000000;
+}
+
+.member .up_btn {
+    padding: 3px;
+    float: right;
+}
+
+.button_style {
+    border-radius: 5px;
+}

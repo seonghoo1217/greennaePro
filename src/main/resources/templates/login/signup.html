@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>회원가입</title>
+    <link href="../../static/css/join.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" th:src="@{/js/register.js}"></script>
+</head>
+<body>
+<div>
+<form method="post" th:action="@{/login/signup}">
+    <div id="container">
+        <div class="input_form">
+        <!-- 텍스트 -->
+            <h1> 회원가입</h1>
+
+        <div>
+            <label for="realname">유저이름</label>
+            <input placeholder="이름을 입력" autofocus type="text" id="realname" name="realname">
+        </div>
+
+        <!-- 아이디 -->
+        <div class="input_id">
+            <label for="username">아이디</label>
+            <input required type="text" id="username" name="username"> <!-- required 필수로 입력 -->
+        </div>
+
+        <!-- 패스워드 -->
+        <div class="input _password">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <!-- 숫자:number -->
+        <div>
+            <label for="age">나이</label>
+            <input type="age" name="age" id="age">
+        </div>
+        <div>
+            <label for="street">거주지</label>
+            <input type="text" name="street" id="street">
+        </div>
+
+            <!-- select -->
+            <div>
+                <label for="sex">성별</label>
+                <select name="sex" id="sex">
+                    <option  value="남성">남성</option>
+                    <option  value="여성" selected>여성</option>
+                    <option  value="other">Other</option>
+                </select>
+            </div>
+        <!-- 서버로 입력내용을 보내는 버튼 -->
+        <button class="submitBtn" name="submitBtn" type="submit" >회원가입 완료</button>
+
+        </div>
+    </div>
+</form>
+<button class="btn" th:onclick="checkId()">중복 검사</button>
+<!-- 리셋버튼 -->
+<button class="btn" type="reset">리셋</button>
+</div>
+</body>
+</html>

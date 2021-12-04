@@ -1,0 +1,53 @@
+#wrap{
+	width:530px;
+	height:600px;
+	margin-left:auto; 
+	margin-right:auto;
+	text-align:center;
+}
+.banner {
+    height: 100%;
+    width: 200px;
+    margin-top: 50px;
+    margin-right: 100px;
+    color:black;
+    float:right;
+    position:absolute;
+}
+.main{
+	position:fixed;
+	overflow:hidden;
+	background:url("../img/LoginBack.png");
+	background-size: 120% 120%;
+	background-position: center;
+}
+#amg{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+table{
+	margin-left:auto; 
+	margin-right:auto;
+	border:3px solid skyblue
+}
+		
+td{
+	border:1px solid skyblue
+}
+		
+#title{
+	background-color:skyblue
+}
+.img-move{
+    position:absolute;
+}/*
+#img1{
+    left:"200px"
+}
+#img2{
+    left:"400px"
+}
+*/

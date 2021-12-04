@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Login.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/head.css}">
+    <title> 새로운 인연. 그린내 - 메인 </title>
+</head>
+<body>
+<img th:src="@{/img/logo2.png}" alt="로고" id="LoginLogo"></a>
+
+    <div th:if="${param.error}">
+        <p th:text="옳바른 로그인 정보가 아닙니다" class="alert alert-danger"/>
+    </div>
+
+<form th:action="@{/login_proc}" method="post">
+    <section id="main_content">
+        <h1 style="text-align: center">새로운 인연, 그린네에 오신 걸 환영합니다.</h1>
+        <form name="Login">
+            ID :<input id="username" name="username" type="text"/><br>
+            PW :<input id="password" name="password" type="password"/><br>
+            <button type="submit" class="btn btn-primary">로그인</button>
+            <button type="button"><a th:href="@{/login/signup}">회원가입</a></button>
+            <hr>
+            <button type="button">구글 로그인</button><br>
+            <button type="button">페이스북 로그인</button><br>
+            <button type="button">트위터 로그인</button>
+        </form>
+
+
+    </section>
+    <div class="clear"></div>
+</section> <!-- section main -->
+</form>
+
+
+
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2006 뿌꾸뿌꾸 All rights reserved.</br>
+            전화 : 070-8902-1766 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:10904 경기도 파주시 경의로 975 (야당동) 파크프라자 이파트너 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신판매업 신고 제 2015-경기파주-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :배유리 소분 제2010-0368061호(freely0208@nate.com) / 대표자(성명):하서진</p>
+    </section> <!-- section footer_address -->
+</footer>
+</body>
+</html>

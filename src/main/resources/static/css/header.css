@@ -1,0 +1,89 @@
+* {
+    margin:0;
+    padding:0;
+}
+body {
+    font-family:"맑은 고딕", "돋움";
+    font-size:12px;
+    color:#444444;
+    background-color:white;
+}
+ul {
+    list-style-type:none;
+}
+a:link, a:visited, a:hover, a:active {
+    text-decoration:none;
+    color:#444444;
+}
+.clear {
+    clear:both;
+}
+
+/* ---------- 헤더 ------------- */
+header {
+    height:160px;
+}
+header #header_bar {
+    width:1000px;
+    margin:0 auto;
+}
+header #logo {
+    float:left;
+    padding-top: 30px;
+}
+
+
+
+/* 상단 메뉴 */
+header #header_menu {
+    float:right;
+    padding-top: 80px;
+}
+header #header_menu li.green a:link {
+    color:#f19149;
+}
+header #header_menu li.green a:visited {
+    color:#f19149;
+}
+header #header_menu li.green a:hover {
+    color:#f19149;
+}
+header #header_menu li.green a:active {
+    color: #f19149;
+}
+header #header_menu li {
+    display:inline;
+    margin-left:10px;
+}
+/* 상단 메뉴 끝 */
+
+/* 메인 메뉴 시작*/
+header #main_menu {
+    height:38px;
+    margin-top:20px;
+    background-color:#E67BAD;
+    /* border:solid 1px #0000ff; */
+}
+header #main_menu ul {
+    width:1000px;
+    margin:auto;
+    padding-top:12px;
+    text-align:center;
+}
+header #main_menu li {
+    display:inline;
+    margin:0 57px;
+}
+header #main_menu a:link {
+    color:#ffffff;
+}
+header #main_menu a:visited {
+    color:#ffffff;
+}
+header #main_menu a:hover {
+    color:#ffffff;
+}
+header #main_menu a:active {
+    color:#ffffff;
+}
+/* 메인 메뉴 끝 */

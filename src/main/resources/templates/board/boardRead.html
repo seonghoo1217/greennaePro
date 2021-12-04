@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>BoardRead</title>
+</head>
+<body>
+    <label>제목</label>
+    <br>
+    <span th:text="${boardDto.getTitle()}"/>
+    <label>작성자</label>
+    <span th:text="${boardDto.getWriter()}"/>
+    <br>
+    <label>내용</label>
+    <br>
+    <span th:text="${boardDto.getContent()}"/>
+
+    <form method="get" th:action="@{'/board/'+${boardDto.title} + '/boardUpdate'}">
+        <button type="submit">수정하기</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+글 번호  제목   작성자
+<th:block th:each="listBoard:${board}">
+    <div>
+    <a th:href="@{1/read}">보러가기</a>
+    <span th:text="${listBoard.getId()}"/>
+    <span th:text="${listBoard.getTitle()}"/>
+    <span th:text="${listBoard.getWriter()}"/>
+    </div>
+</th:block>
+</body>
+</html>

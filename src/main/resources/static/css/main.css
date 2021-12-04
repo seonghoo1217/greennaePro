@@ -1,0 +1,95 @@
+/* 메인 화면 시작*/
+
+section #main{
+    height: 1000px;
+}
+
+
+section #page_control{
+    width:1000px;
+    margin:0 auto;
+}
+section #page_control #page_cont{
+    float:left;
+    font-size: 20px;
+    margin:20px 0px 0px 0px;
+
+}
+
+section #page_control #page_button{
+    float: right;
+    margin: 20px 0 0 0;
+}
+section #page_control #page_button .btn_page{
+    width: 30px;
+    height: 30px;
+}
+/* 메인 화면 끝*/
+
+/* 유저 관련 시작 */
+
+section #main_content{
+    width:1000px;
+    margin:0 auto;
+    font-size: 15px;
+    font-weight: 20px;
+}
+section #main_content .user_form{
+    margin-top:30px;
+    width:1000px;
+    height:200px;
+    border: solid 2px #000000;
+}
+section #main_content .user_img{
+    float:left;
+    margin-top: 30px;
+}
+/* 유저 정보 시작*/
+section #main_content .user_info{
+    float: left;
+    margin: 30px 0 0 20px;
+}
+
+section #main_content .user_name{
+    font-size: 25px;
+    font-weight: 40px;
+}
+
+section #main_content .user_info .user_age{
+    float: left;
+}
+
+section #main_content .user_info .user_job{
+    float:left;
+    margin-left:10px;
+}
+/* 유저 정보 끝*/
+
+/* 유저 한줄소개 시작*/
+section #main_content .user_disc{
+    font-size:30px;
+    font-weight:30px;
+    float:left;
+    margin: 70px 0 0 100px;
+}
+/* 유저 한줄소개 끝*/
+
+/* 유저 버튼 시작*/
+section #main_content .user_button{
+    float:right;
+    margin: 150px 20px 10px 0px;
+}
+section #main_content .user_button .user_like{
+    width: 50px;
+    height: 30px;
+}
+section #main_content .user_button .user_dm{
+    width: 50px;
+    height: 30px;
+    margin-left: 20px;
+}
+/* 유저 버튼 끝*/
+/* 유저 관련 끝 */
+
+
+

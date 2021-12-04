@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+
+</script>
+<form method="post" th:action="@{/imageRegi}">
+    <h1> 아직 사진이 없으시군요!</h1>
+    <label for="uploadFiles"/>
+    <div>
+        <input name="uploadFiles" id="uploadFiles" type="file" multiple>
+        <button class="uploadBtn">사진 업로드</button>
+    </div>
+    <div class="uploadResult">
+
+    </div>
+    <button type="submit">사진 등록 끝내기</button>
+</form>
+<script>
+    function showUploadImages(arr){
+        console.log(arr)
+        var divArea=$(".uploadResult");
+
+        var str="";
+
+        for(var i=0; i<arr.length;i++){
+            str+="<div>";
+            str+="<img src='/display?fileName="+arr[i].thumbnailURL+"'>";
+            str+="<button class='removeBtn' data-name='"+arr[i].imageURL+"'>사진 지우기</button>"
+            str+="</div>"
+            console.log(arr[i].thumbnailURL)
+            console.log(divArea)
+        }
+        divArea.append(str);
+    }
+
+    $(".uploadBtn").click(function (e){
+        e.preventDefault()
+        let username = $("#username").val();
+
+        console.log(username)
+
+        var formData=new FormData();
+
+        var inputFile=$("input[type='file']");
+
+        var files=inputFile[0].files;
+
+        for(var i=0; i< files.length; i++){
+            console.log(files[i]);
+            formData.append("uploadFiles",files[i]);
+        }
+
+
+        $.ajax({
+            url:'/uploadAjax',
+            processData:false,
+            contentType:false,
+            data: formData,
+            type:'POST',
+            dataType:'json',
+            success:function (result){
+                console.log(result)
+                showUploadImages(result);
+            },
+            error:function (jqXHR,testStatus,errorThrown){
+                console.log(testStatus);
+            }
+        });
+    });
+
+    $(".uploadResult").on("click",".removeBtn",function (e){
+
+        var target=$(this);
+        var fileName=target.data("name");
+        console.log(target.data("name"));
+        var targetDiv=$(this).closest("div");
+
+        console.log(fileName);
+
+        $.post('/removeFile',{fileName:fileName},function (result){
+            console.log(result)
+            if(result==true){
+                targetDiv.remove();
+            }
+        })
+        e.preventDefault()
+    });
+</script>
+</body>
+</html>

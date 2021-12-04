@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 수정</title>
+</head>
+<body>
+<h1>정보 수정</h1>
+<form method="post" th:action="@{'/board/' + ${dto.title}+'/boardUpdate'}">
+    <label>제목</label>
+    <br>
+    <span th:text="${dto.getTitle()}"/>
+    <label>작성자</label>
+    <span th:text="${accountContext.username}"/>
+
+    <br>
+    <label for="content">내용입력</label>
+    <br>
+    <textarea id="content" name="content" placeholder="수정 내용을 작성하여 주세요" cols="100" rows="100" style="resize: vertical" required="required">
+        </textarea>
+    <button type="submit">전송</button>
+</form>
+</body>
+</html>
