@@ -64,8 +64,16 @@ public class User {
     @Column(name = "user_introduce")
     private String introduce;
 
+    @Column(name = "user_like")
+    private int like;
+
+
+    private String x;
+
+    private String y;
+
     @Builder
-    public User(Long id,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String age, String street, String sex, String role, String imageName) {
+    public User(Long id,String x,String y,int like,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String age, String street, String sex, String role, String imageName) {
         this.id=id;
         this.username=username;
         this.realname=realname;
@@ -78,6 +86,9 @@ public class User {
         this.createdTime=createdTime;
         this.userImagePath=userImagePath;
         this.introduce=introduce;
+        this.like=like;
+        this.x=x;
+        this.y=y;
     }
 
 
@@ -95,6 +106,9 @@ public class User {
                 .imageName(null)
                 .createdTime(createdTime)
                 .introduce(introduce)
+                .like(like)
+                .x(x)
+                .y(y)
                 .build();
     }
 }

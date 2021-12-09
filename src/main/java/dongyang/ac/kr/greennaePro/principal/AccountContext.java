@@ -22,7 +22,7 @@ public class AccountContext implements UserDetails {
     private String imageName;
     private String age;
     private String introduce;
-
+    private int like;
     public AccountContext(User user) {
         this.id= user.getId();
         this.username = user.getUsername();
@@ -34,6 +34,7 @@ public class AccountContext implements UserDetails {
         this.street= user.getStreet();
         this.imageName= user.getImageName();
         this.introduce=user.getIntroduce();
+        this.like=user.getLike();
     }
 
     public AccountContext() {
@@ -52,6 +53,7 @@ public class AccountContext implements UserDetails {
                 .password(password)
                 .role(role)
                 .introduce(introduce)
+                .like(like)
                 .build();
 
         return buildUser;
@@ -83,7 +85,7 @@ public class AccountContext implements UserDetails {
         return this.sex=sex;
     }
     public String getRealname(){return this.realname=realname;}
-
+    public int getLike(){return this.like=like;}
     public String getAge(){return this.age=age;}
     public String getIntroduce(){return this.introduce=introduce;}
     public Long getId(){return this.id;}

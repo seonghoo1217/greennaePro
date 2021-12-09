@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title> 새로운 인연. 그린내 - 메인 </title>
 </head>
 <body>
@@ -83,7 +85,8 @@
                 <span th:text="${User.getIntroduce()}"/>
             </div>
             <div class="user_button">
-                <button class="user_like" href="#" value="추천">추천</button>
+                <button class="user_like" th:onclick="|javascript:likeup(${User.getId()})|">추천</button>
+                <div>추천 수 :<span th:text="${User.getLike()}"/></div>
             </div>
         </div>
         </th:block>

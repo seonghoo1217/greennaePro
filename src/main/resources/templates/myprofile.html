@@ -3,20 +3,32 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/profile.css}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>마이 프로필</h1>
+<div id="image">
 <th:block th:each="Image:${imageList}">
     <img th:src="@{${'/display/?fileName=' + Image.folderPath+'/s_'+Image.uuid+'_'+Image.fileName}}"/>
 </th:block>
-<span th:text="${accountContext.getUsername()}"/>
-<span th:text="${accountContext.getRealname() }"/>
-<span th:text="${accountContext.getSex()}"/>
-<span th:text="${accountContext.getAge()}"/>
-<span th:text="${accountContext.getI}"
-
+</div>
+<div>
+    <span th:text="${accountContext.getUsername()}"/>
+</div>
+<div>
+    <span th:text="${accountContext.getRealname() }"/>
+</div>
+<div>
+    <span th:text="${accountContext.getSex()}"/>
+</div>
+<div>
+    <span th:text="${accountContext.getAge()}"/>
+</div>
+<div>
+    <span th:text="${accountContext.getIntroduce()}"/>
+</div>
 
 </body>
 </html>

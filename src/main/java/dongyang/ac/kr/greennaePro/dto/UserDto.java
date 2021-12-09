@@ -39,8 +39,14 @@ public class UserDto {
 
     private String introduce;
 
+    private int like;
+
+    private String x;
+
+    private String y;
+
     @Builder
-    public UserDto(Long id,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String sex, String street, String age, String role, String imageName){
+    public UserDto(Long id,String x,String y,int like,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String sex, String street, String age, String role, String imageName){
         this.id=id;
         this.username=username;
         this.realname=realname;
@@ -53,6 +59,9 @@ public class UserDto {
         this.userImagePath=userImagePath;
         this.createdTime=createdTime;
         this.introduce=introduce;
+        this.like=like;
+        this.x=x;
+        this.y=y;
     }
 
 
@@ -71,6 +80,9 @@ public class UserDto {
                 .userImagePath(userImagePath)
                 .imageName(null)
                 .introduce(introduce)
+                .like(like)
+                .x(x)
+                .y(y)
                 .build();
     }
 }

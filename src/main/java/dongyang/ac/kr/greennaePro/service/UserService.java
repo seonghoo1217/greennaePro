@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 @Service
 @Transactional(readOnly = true)
@@ -36,6 +37,7 @@ public class UserService implements UserDetailsService {
 
 
         dto.setCreatedTime(LocalDateTime.now());
+        dto.setLike(0);
         log.info("sibal={}", dto.toEntity().getFileImage());
         return userRepository.save(dto.toEntity()).getId();
     }
@@ -67,4 +69,21 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findById(id).get();
         user.setUserImagePath(userImagePath);
     }
+
+    @Transactional
+    public void updateUserLike(Long id,int like){
+        User user = userRepository.findById(id).get();
+        user.setLike(user.getLike()+1);
+    }
+
+    @Transactional
+    public void updateXY(Long id,String x,String y){
+        User user = userRepository.findById(id).get();
+        log.info("this is service x={}",x.getClass().getName());
+        log.info("this is service y={}",y.getClass().getName());
+
+        user.setX(x);
+        user.setY(y);
+    }
+
 }

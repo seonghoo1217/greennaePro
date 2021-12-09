@@ -1,0 +1,7 @@
+#image{
+    border:solid;
+    border: 3px dotted;
+    border-radius: 3px;
+    border-color: black;
+    border: medium dashed black;
+}

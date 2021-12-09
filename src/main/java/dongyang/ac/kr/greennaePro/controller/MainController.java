@@ -150,9 +150,13 @@ public class MainController {
     }
 
     @GetMapping("/getmap")
-    public String getMap(){
+    public String getMap(Model model,@AuthenticationPrincipal AccountContext accountContext){
+        model.addAttribute("accountContext",accountContext);
         return "/getmap";
     }
+
+
+
     @GetMapping("/credit")
     public String credit(){
         return "/credit";

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <input type="hidden" id="hiddenId"th:value="${accountContext.getId()}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>간단한 지도 표시하기</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fh0tkqv9ud&submodules=geocoder"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=fh0tkqv9ud&submodules=geocoder"></script>
 </head>
 <body>
 <div id="map" style="width:100%;height:600px;"></div>
-<button type="button" onclick="geoCode()">ㅁㄴㅇㄹ</button>
+<button type="button" onclick="submit()">확인</button>
+
 <script>
     var map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.3595316, 127.1052133),
         zoom: 15,
         mapTypeControl: true
     });
-
+    var marker;
     var infoWindow = new naver.maps.InfoWindow({
         anchorSkew: true
     });
@@ -111,10 +115,7 @@
             infoWindow.open(map, point);
         });
 
-        var marker = new naver.maps.Marker({
-            position: new naver.maps.LatLng(item.x, item.y),
-            map: map
-        });
+
     }
 
     function initGeocoder() {
@@ -145,48 +146,84 @@
 
     naver.maps.onJSContentLoaded = initGeocoder;
     naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
-</script>
-</body>
-</html>
-<doctype html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>한국주소 좌표변환 - korea address to geocode</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=fh0tkqv9ud&submodules=geocoder"></script>
-    <script>
-        function searchAddressToCoordinate(address) {
-            naver.maps.Service.geocode({
-                address: address
-            }, function(status, response) {
-                if (status === naver.maps.Service.Status.ERROR) {
-                    return alert('주소를 확인후 다시 시도 바랍니다.');
-                }
-                $("#resultNum").text(response.result.items.length+"개");
-                for(i=0;i<response.result.items.length;i++){
-                    var item=response.result.items[i];
-                    addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
-                    str = "<tr><th rowspan=2>"+(i+1)+"</th><th>변환주소</th><td>"+addrType+item.address+"</td></tr><tr><th>좌표</th><td>lat-"+item.point.y+", lng-"+item.point.x+"</td></tr>";
-                    $("#result table tbody").append(str);
-                }
-            });
-        }
-        function sendAddr(){
-            if(!$('#address').val()){
-                alert("변환할 주소를 입력해주세요.");
-                $("#address").focus();
-            }else{
-                $("#result table tbody, #resultNum").html("");
-                searchAddressToCoordinate($('#address').val());
+
+    function searchAddressToCoordinate(address) {
+        naver.maps.Service.geocode({
+            address: address
+        }, function(status, response) {
+            if (status === naver.maps.Service.Status.ERROR) {
+                return alert('주소를 확인후 다시 시도 바랍니다.');
             }
-        }
-        $(function(){
-            $("#address").focus();
+            $("#resultNum").text(response.result.items.length+"개");
+            for(i=0;i<response.result.items.length;i++){
+                var item=response.result.items[i];
+                mark = function (){
+                    var map = new naver.maps.Map('map', {
+                        center: new naver.maps.LatLng(parseFloat(item.point.y), parseFloat(item.point.x)),
+                        zoom: 17
+                    });
+
+                    marker = new naver.maps.Marker({
+                        position: new naver.maps.LatLng(parseFloat(item.point.y), parseFloat(item.point.x)),
+                        map: map
+                    });
+
+                }
+                addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
+                str = "<tr><th rowspan=3>"+(i+1)+"</th>" +
+                    "<th>변환주소</th>" +
+                    "<td>"+addrType+item.address+"</td>" +
+                    "</tr><tr><th>좌표</th>" +
+                    "<td>lng-"+item.point.x+", lat-"+item.point.y+"</td>"+
+                    "</tr><tr><th>마커찍기</th>" +
+                    "<td><button type='button' onclick='mark();'>마커</button> </td></tr>";
+
+                $("#result table tbody").append(str);
+            }
         });
-    </script>
-</head>
-<body>
+
+    }
+
+    function sendAddr(){
+        if(!$('#address').val()){
+            alert("변환할 주소를 입력해주세요.");
+            $("#address").focus();
+        }else{
+            $("#result table tbody, #resultNum").html("");
+            searchAddressToCoordinate($('#address').val());
+        }
+    }
+    $(function(){
+        $("#address").focus();
+    });
+
+    function submit(){//이거작성해서 db에 넣기
+
+
+        console.log(marker.position);
+        console.log($("#hiddenId").val())
+        var id=$("#hiddenId").val()
+
+        $.ajax({
+            type:'GET',
+            url:'/api/'+id+'/getmap',
+            data:{
+                "x":marker.position.x,
+                "y":marker.position.y
+            }
+        })
+        .done(res=>{
+            if(res===1){
+                alert("회원 위치정보가 저장됨");
+            }else {
+                console.log("안됨ㅋㅋ");
+            }
+        }).fail(error=>{
+            console.log("api 실패={}",error);
+        });
+
+    }
+</script>
 <div id="inputAddr">
     <table>
         <colgroup>
@@ -197,7 +234,7 @@
         <tr>
             <th>변환할 주소</th>
             <td>
-                <input type="text" id="address" placeholder="예)송파대로 100" value="" onkeyup="if(window.event.keyCode == 13){sendAddr();}">
+                <input type="text" id="address" placeholder="예)독산로 6길 7" value="" onkeyup="if(window.event.keyCode == 13){sendAddr();}">
                 <input type="button" id="submit" value="변환" onClick="sendAddr()">
             </td>
         </tr>
@@ -220,56 +257,4 @@
     </table>
 </div>
 </body>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fh0tkqv9ud&submodules=geocoder">
-    </script>
-</head>
-<body>
-<div id="map" style="width:100%;height:400px;"></div>
-<input type="text" id="address" placeholder="예)송파대로 100" value="" onkeyup="if(window.event.keyCode == 13){sendAddr();}">
-<input type="button" id="submit" value="변환" onClick="sendAddr()">
-<script>
-    var mapOptions = {
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
-        zoom: 10
-    };
-
-    var map = new naver.maps.Map('map', mapOptions);
-    var marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.3595704, 127.105399),
-        map: map
-    });
-    function searchAddressToCoordinate(address) {
-        naver.maps.Service.geocode({
-            address: address
-        }, function(status, response) {
-            if (status === naver.maps.Service.Status.ERROR) {
-                return alert('주소를 확인후 다시 시도 바랍니다.');
-            }
-            $("#resultNum").text(response.result.items.length+"개");
-            for(i=0;i<response.result.items.length;i++){
-                var item=response.result.items[i];
-                addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
-                str = "<tr><th rowspan=2>"+(i+1)+"</th><th>변환주소</th><td>"+addrType+item.address+"</td></tr><tr><th>좌표</th><td>lat-"+item.point.y+", lng-"+item.point.x+"</td></tr>";
-                $("#result table tbody").append(str);
-            }
-        });
-    }
-    function sendAddr(){
-        if(!$('#address').val()){
-            alert("변환할 주소를 입력해주세요.");
-            $("#address").focus();
-        }else{
-            $("#result table tbody, #resultNum").html("");
-            searchAddressToCoordinate($('#address').val());
-        }
-    }
-    $(function(){
-        $("#address").focus();
-    });
-</script>
-</body>
+</html>
