@@ -37,9 +37,10 @@ public class UserDto {
 
     private String userImagePath;
 
+    private String introduce;
 
     @Builder
-    public UserDto(Long id,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String sex, String street, String age, String role, String imageName){
+    public UserDto(Long id,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String sex, String street, String age, String role, String imageName){
         this.id=id;
         this.username=username;
         this.realname=realname;
@@ -51,6 +52,7 @@ public class UserDto {
         this.imageName=imageName;
         this.userImagePath=userImagePath;
         this.createdTime=createdTime;
+        this.introduce=introduce;
     }
 
 
@@ -68,6 +70,7 @@ public class UserDto {
                 .createdTime(createdTime)
                 .userImagePath(userImagePath)
                 .imageName(null)
+                .introduce(introduce)
                 .build();
     }
 }

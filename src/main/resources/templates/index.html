@@ -14,7 +14,7 @@
 <body>
 <header>
     <section id="header_bar">
-        <a id="logo" href="index.jsp"><img th:src="@{/img/logo2.png}" alt="로고" width="120px" height="60px"></a>
+        <a id="logo" th:href="@{/}"><img th:src="@{/img/logo2.png}" alt="로고" width="120px" height="60px"></a>
         <nav id="header_menu">
             <ul>
                 <li style="font-size:large">안녕하세요 <span th:text="${accountContext.getUsername()}"/> 님</li>
@@ -30,7 +30,7 @@
         <ul>
             <li><a href="#">홈</a></li>
             <li><a href="#">내가 누른 추천목록</a></li>
-            <li><a href="#">DM</a></li>
+            <li><a th:href="@{/room}">오픈채팅방</a></li>
             <li><a href="#">검색</a></li>
             <li><a th:href="@{board/boardList}"}>게시물 탐색</a></li>
         </ul>
@@ -75,15 +75,15 @@
                 <div class="user_name" ><span th:text="${User.getUsername()}"/></div>
                 <div class="user_age"><span th:text="${User.getRealname()}"/></div>
                 <div class="user_job"><span th:text="${User.getAge()}"/></div>
+                <br>
                 <div class="user_height"><span th:text="${User.getSex()}"/></div>
                 <div class="user_weight"><span th:text="${User.getStreet()}"/></div>
             </div>
             <div class="user_disc">
-                한줄소개가 들어갈곳입니다.
+                <span th:text="${User.getIntroduce()}"/>
             </div>
             <div class="user_button">
                 <button class="user_like" href="#" value="추천">추천</button>
-                <button class="user_dm" href="#" value="DM">DM</button>
             </div>
         </div>
         </th:block>

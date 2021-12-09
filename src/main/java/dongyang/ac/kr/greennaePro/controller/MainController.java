@@ -85,26 +85,30 @@ public class MainController {
     }
 
     @RequestMapping("/chat")
-    public ModelAndView chat(){
-        ModelAndView mv=new ModelAndView();
+    public ModelAndView chat() {
+        ModelAndView mv = new ModelAndView();
         mv.setViewName("chat");
         return mv;
     }
 
+    /**
+     * 방 페이지
+     * @return
+     */
     @RequestMapping("/room")
-    public ModelAndView room(){
+    public ModelAndView room() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("room");
         return mv;
     }
+
     /**
      * 방 생성하기
      * @param params
      * @return
      */
     @RequestMapping("/createRoom")
-    public @ResponseBody
-    List<Room> createRoom(@RequestParam HashMap<Object, Object> params){
+    public @ResponseBody List<Room> createRoom(@RequestParam HashMap<Object, Object> params){
         String roomName = (String) params.get("roomName");
         if(roomName != null && !roomName.trim().equals("")) {
             Room room = new Room();
@@ -114,6 +118,7 @@ public class MainController {
         }
         return roomList;
     }
+
     /**
      * 방 정보가져오기
      * @param params
@@ -123,6 +128,7 @@ public class MainController {
     public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params){
         return roomList;
     }
+
     /**
      * 채팅방
      * @return
@@ -141,5 +147,14 @@ public class MainController {
             mv.setViewName("room");
         }
         return mv;
+    }
+
+    @GetMapping("/getmap")
+    public String getMap(){
+        return "/getmap";
+    }
+    @GetMapping("/credit")
+    public String credit(){
+        return "/credit";
     }
 }

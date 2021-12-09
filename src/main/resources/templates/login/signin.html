@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/Login.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/head.css}">
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
     <title> 새로운 인연. 그린내 - 메인 </title>
 </head>
 <body>
@@ -27,9 +28,7 @@
             <button type="submit" class="btn btn-primary">로그인</button>
             <button type="button"><a th:href="@{/login/signup}">회원가입</a></button>
             <hr>
-            <button type="button">구글 로그인</button><br>
-            <button type="button">페이스북 로그인</button><br>
-            <button type="button">트위터 로그인</button>
+           <a th:href="@{/login/sociallogin}"><button type="button" th:onclick="popup()">카카오 로그인</button></a>
         </form>
 
 

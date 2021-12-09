@@ -21,7 +21,7 @@ public class AccountContext implements UserDetails {
     private String sex;
     private String imageName;
     private String age;
-
+    private String introduce;
 
     public AccountContext(User user) {
         this.id= user.getId();
@@ -33,6 +33,7 @@ public class AccountContext implements UserDetails {
         this.age=user.getAge();
         this.street= user.getStreet();
         this.imageName= user.getImageName();
+        this.introduce=user.getIntroduce();
     }
 
     public AccountContext() {
@@ -50,6 +51,7 @@ public class AccountContext implements UserDetails {
                 .street(street)
                 .password(password)
                 .role(role)
+                .introduce(introduce)
                 .build();
 
         return buildUser;
@@ -83,7 +85,7 @@ public class AccountContext implements UserDetails {
     public String getRealname(){return this.realname=realname;}
 
     public String getAge(){return this.age=age;}
-
+    public String getIntroduce(){return this.introduce=introduce;}
     public Long getId(){return this.id;}
 
     @Override

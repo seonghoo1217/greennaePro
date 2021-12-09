@@ -77,4 +77,10 @@ public class LoginController {
 
    }
 
+   @GetMapping("/sociallogin")
+    public String social(){
+
+        return "/login/sociallogin";
+   }
+
 }
