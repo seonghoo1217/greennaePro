@@ -1,7 +1,21 @@
-#image{
-    border:solid;
-    border: 3px dotted;
-    border-radius: 3px;
-    border-color: black;
-    border: medium dashed black;
+@charset "UTF-8";
+
+#bar{
+    border-top:black 1px solid;
+    height: 42px;
+    background-color: #E67BAD
+}
+h1{
+    color: #FFFFFF
+}
+
+#container{
+    margin-left: 10%;
+    margin-top: 10px;
+    text-align: center;
+    width: 80%;
+}
+
+#profile{
+    font-size: 20px;
 }

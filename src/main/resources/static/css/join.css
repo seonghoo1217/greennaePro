@@ -1,3 +1,74 @@
-h1{
-    color: red;
+@charset "UTF-8";
+
+body{
+    background: linear-gradient( 150deg, rgb(250,237,246), white );
+}
+
+#LoginLogo{
+    margin-top: 20px;
+    margin-left: 25%;
+    width: 60%;
+    height: 200px;
+}
+
+h1 {
+    text-align: left;
+    margin-left: 26%;
+}
+
+#container {
+    border: black 1px solid;
+    width: 50%;
+    margin-left: 20%;
+    padding-left: 18%;
+    line-height: 50px;
+    font-size: 25px;
+}
+
+input{
+    font-size: 25px;
+    width: 40%;
+}
+
+#realname{
+    margin-left: 40px;
+}
+
+#username{
+    margin-left: 65px;
+}
+
+#password{
+    margin-left: 40px;
+}
+
+#age{
+    margin-left: 90px;
+}
+
+#street{
+    margin-left: 65px;
+}
+#introduce{
+    margin-left: 40px;
+}
+#sex {
+    font-size: 25px;
+    width: 40%;
+    margin-left: 90px;
+}
+
+.submitBtn{
+    font-size: 20px;
+    margin-left: 80%;
+}
+
+#etc{
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 20px;
+}
+
+#etc button{
+    font-size: 15px;
 }

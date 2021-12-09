@@ -1,5 +1,6 @@
 package dongyang.ac.kr.greennaePro.controller;
 
+import dongyang.ac.kr.greennaePro.domain.Chat;
 import dongyang.ac.kr.greennaePro.domain.Image;
 import dongyang.ac.kr.greennaePro.domain.Room;
 import dongyang.ac.kr.greennaePro.domain.User;
@@ -96,9 +97,10 @@ public class MainController {
      * @return
      */
     @RequestMapping("/room")
-    public ModelAndView room() {
+    public ModelAndView room(Model model, Chat chat) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("room");
+        model.addAttribute("chat",chat);
         return mv;
     }
 

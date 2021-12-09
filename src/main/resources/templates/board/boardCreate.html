@@ -1,32 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:color="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <style>
+        label{border: 1px solid rgba(61, 37, 37, 0.25);}
+    </style>
 </head>
 <body>
-    <form method="post" action="/board/boardCreate">
-        <label>제목입력</label>
-        <br>
-        <input type="text" name="title" placeholder="제목을 입력해주세요"required="required"/>
-        <label>작성자</label>
-        <span th:text="${accountContext.username}"/>
-        <br>
-        <label for="content">내용입력</label>
-        <br>
-        <textarea id="content" name="content" placeholder="내용을 작성하여 주세요" cols="100" rows="100" style="resize: vertical" required="required">
-        </textarea>
-        <div>
-            <input name="uploadFiles" id="uploadFiles" type="file" multiple>
-            <button class="uploadBtn">사진 업로드</button>
-        </div>
-        <div class="uploadResult">
+<a id="logo" th:href="@{/}"><img th:src="@{/img/logo.jpg}" alt="로고" width="120px" height="60px"></a>
 
-        </div>
-        <button type="submit">전송</button>
-    </form>
+<div style="background-color: #E67BAD; height: 42px;border: black;text-align: center">
+    <h1 style="color: #FFFFFF;border-bottom: 1px solid black">글작성</h1>
+</div>
+<div style="width: 80%; margin-left: 10%">
+    <div id ="round" style="text-align: center">
+        <form method="post" action="/board/boardCreate" style="background-color:#ffffff">
+            <br>
+            <input type="text" name="title" placeholder="제목을 입력해주세요"required="required"/><br>
+            <label>작성자</label>
+            <span th:text="${accountContext.username}"/>
+            <br>
+            <label for="content">내용입력</label>
+            <br>
+            <textarea id="content" name="content" placeholder="내용을 작성하여 주세요" cols="100" rows="100" style="resize: vertical" required="required">
+            </textarea>
+            <div>
+                <input name="uploadFiles" id="uploadFiles" type="file" multiple>
+                <button class="uploadBtn">사진 업로드</button>
+            </div>
+            <div class="uploadResult">
+
+            </div>
+            <button type="submit">전송</button>
+        </form>
+    </div>
     <script>
         function showUploadImages(arr){
             console.log(arr)
@@ -98,7 +110,29 @@
             e.preventDefault()
         });
     </script>
+</div>
 </body>
-</html>
-</body>
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2021 그린내 All rights reserved.</br>
+            전화 : 010-6284-7384 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:서울특별시 고척동 경인로 445 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신업 신고 제 2021-서울-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :이현민 소분 제2010-0368061호(seonghoo1217@naver.com) / 대표자(성명):이성호</p>
+    </section> <!-- section footer_address -->
+</footer>
 </html>

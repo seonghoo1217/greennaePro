@@ -5,21 +5,26 @@
     <title>Title</title>
 </head>
 <body>
+<link rel="stylesheet" type="text/css" th:href="@{/css/imageRegi.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
 
 </script>
-<form method="post" th:action="@{/imageRegi}">
-    <h1> 아직 사진이 없으시군요!</h1>
-    <label for="uploadFiles"/>
-    <div>
-        <input name="uploadFiles" id="uploadFiles" type="file" multiple>
-        <button class="uploadBtn">사진 업로드</button>
-    </div>
-    <div class="uploadResult">
-
-    </div>
-    <button type="submit">사진 등록 끝내기</button>
-</form>
+<div id="logodiv">
+    <img th:src="@{/img/logo2.png}" id="LoginLogo"/>
+</div>
+<div id="imageRg">
+    <form method="post" th:action="@{/imageRegi}">
+        <h1> 아직 사진이 없으시군요!</h1>
+        <label for="uploadFiles"/>
+        <div>
+            <input name="uploadFiles" id="uploadFiles" type="file" multiple>
+            <button class="uploadBtn">사진 업로드</button>
+        </div><br>
+        <div class="uploadResult"></div>
+        <button type="submit" id="submit">정보 입력 끝내기 끝내기</button>
+    </form>
+</div>
 <script>
     function showUploadImages(arr){
         console.log(arr)
@@ -91,5 +96,29 @@
         e.preventDefault()
     });
 </script>
+
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2021 그린내 All rights reserved.</br>
+            전화 : 010-6284-7384 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:서울특별시 고척동 경인로 445 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신업 신고 제 2021-서울-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :이현민 소분 제2010-0368061호(seonghoo1217@naver.com) / 대표자(성명):이성호</p>
+    </section> <!-- section footer_address -->
+</footer>
 </body>
 </html>

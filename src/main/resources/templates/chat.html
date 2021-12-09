@@ -51,11 +51,21 @@
     function wsOpen(){
         ws = new WebSocket("ws://" + location.host + "/chating");
         wsEvt();
-    }
+        wsClose();
 
+    }
+    function wsClose(){
+        ws.onclose=function (data){
+            var str=$("#userName").val();
+            alert(str+"님이 채팅을 나가셨습니다")
+        }
+    }
     function wsEvt() {
         ws.onopen = function(data){
             //소켓이 열리면 동작
+            var str=$("#userName").val();
+            alert(str+"님이 채팅을 들어오셨습니다");
+
         }
 
         ws.onmessage = function(data) {

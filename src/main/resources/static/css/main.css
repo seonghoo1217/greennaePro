@@ -88,6 +88,12 @@ section #main_content .user_button .user_dm{
     height: 30px;
     margin-left: 20px;
 }
+
+.page-item{
+    display: inline;
+    margin-left: 10px;
+}
+
 /* 유저 버튼 끝*/
 /* 유저 관련 끝 */
 

@@ -80,7 +80,7 @@ public class BoardController {
         model.addAttribute("dto",dto);
         model.addAttribute("accountContext",accountContext);
 
-        return "board/boardUpdate";
+        return "board/{id}/boardUpdate";
     }
     @PostMapping("/{id}/boardUpdate")
     public String update(@PathVariable("id")Long id,
@@ -104,4 +104,5 @@ public class BoardController {
 
         return "board/boardList";
     }
+
 }

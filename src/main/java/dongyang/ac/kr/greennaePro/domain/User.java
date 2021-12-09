@@ -67,10 +67,13 @@ public class User {
     @Column(name = "user_like")
     private int like;
 
-
+    @Column(name = "user_x")
     private String x;
 
+    @Column(name = "user_y")
     private String y;
+
+
 
     @Builder
     public User(Long id,String x,String y,int like,String introduce,String userImagePath,LocalDateTime createdTime, String username, String realname, String password, String age, String street, String sex, String role, String imageName) {

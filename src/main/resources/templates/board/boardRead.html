@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
     <meta charset="UTF-8">
     <title>BoardRead</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 <body>
-    <label>제목</label>
-    <br>
-    <span th:text="${boardDto.getTitle()}"/>
-    <label>작성자</label>
-    <span th:text="${boardDto.getWriter()}"/>
-    <br>
-    <label>내용</label>
-    <br>
-    <span th:text="${boardDto.getContent()}"/>
-
+<a id="logo" th:href="@{/}"><img th:src="@{/img/logo2.png}" alt="로고" width="120px" height="60px"></a>
+<div style="height: 42px; background-color: #F78CBE">
+</div>
+<br>
+<div style="text-align: center;width: 80%;margin-left: 10%">
+    <div style="background-color : #F78CBE;border: 1px solid black;">
+        <label>제목 : </label>
+        <span th:text="${boardDto.getTitle()}"/>
+    </div>
+    <div style="border: 1px solid black;">
+        <label>작성자</label>
+        <span th:text="${boardDto.getWriter()}"/>
+    </div>
+    <div style="background-color: #F78CBE;border: 1px solid black;">
+        <label>내용</label>
+    </div>
+    <div style="border: 1px solid black; height: 600px">
+        <span th:text="${boardDto.getContent()}"/>
+    </div>
     <form method="get" th:action="@{'/board/'+${boardDto.title} + '/boardUpdate'}">
         <button type="submit">수정하기</button>
     </form>
+</div>
 </body>
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2021 그린내 All rights reserved.</br>
+            전화 : 010-6284-7384 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:서울특별시 고척동 경인로 445 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신업 신고 제 2021-서울-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :이현민 소분 제2010-0368061호(seonghoo1217@naver.com) / 대표자(성명):이성호</p>
+    </section> <!-- section footer_address -->
+</footer>
 </html>
