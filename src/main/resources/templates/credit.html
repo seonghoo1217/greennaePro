@@ -1,68 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/credit.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+
     <title>Title</title>
 </head>
 <body>
-<div class="card-body bg-white mt-0 shadow">
-    <p style="font-weight: bold">카카오페이 현재 사용가능</p>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="5000"><span>5,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="10000"><span>10,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="15000"><span>15,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="20000"><span>20,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="25000"><span>25,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="30000"><span>30,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="35000"><span>35,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="40000"><span>40,000원</span></label>
-    <label class="box-radio-input"><input type="radio" name="cp_item" value="50000"><span>50,000원</span></label>
-    <p  style="color: #ac2925; margin-top: 30px">카카오페이의 최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p>
-    <button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button>
-</div>
-<script>
-    $('#charge_kakao').click(function () {
-        // getter
-        var IMP = window.IMP;
-        IMP.init('imp34211413');
-        var money = $('input[name="cp_item"]:checked').val();
-        console.log(money);
+<header>
+    <section id="header_bar">
+        <a id="logo" th:href="@{/}"><img th:src="@{/img/logo2.png}" alt="로고" width="120px" height="60px"></a>
+        <nav id="header_menu">
+            <ul>
+                <li style="font-size:large">안녕하세요 <span th:text="${accountContext.getUsername()}"/> 님</li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{user/custom}">회원 목록 편집</a></li>
+                <li><a href="/doLogout">로그아웃</a></li>
+                <li><a th:href="@{/myprofile}">마이 프로필</a></li>
+                <li><a href="#">관리자에게 문의</a></li>
+            </ul>
+        </nav> <!-- 주요 탑메뉴 기능들 -->
+    </section> <!-- section top -->
+    <div class="clear"></div>
+    <nav id="main_menu">
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">내가 누른 추천목록</a></li>
+            <li><a href="#">DM</a></li>
+            <li><a href="#">검색</a></li>
+            <li><a href="#">게시물 탐색</a></li>
+        </ul>
+    </nav> <!-- 메인 메뉴 모음 -->
+    <div class="clear"></div>
+</header>
+<div id="container">
+    <div class="card-body bg-white mt-0 shadow">
+        <span id="kakao">카카오페이</span><img id="kakaoPay" th:src="@{/img/kakaoPay.png}"/><br>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="5000"><span>5,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="10000"><span>10,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="15000"><span>15,000원</span></label><br>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="20000"><span>20,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="25000"><span>25,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="30000"><span>30,000원</span></label><br>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="35000"><span>35,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="40000"><span>40,000원</span></label>
+        <label class="box-radio-input"><input type="radio" name="cp_item" value="50000"><span>50,000원</span></label>
+        <p  style="color: #ac2925; margin-top: 30px">카카오페이의 최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p>
+        <button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button>
+    </div>
+    <script>
+        $('#charge_kakao').click(function () {
+            // getter
+            var IMP = window.IMP;
+            IMP.init('imp34211413');
+            var money = $('input[name="cp_item"]:checked').val();
+            console.log(money);
 
-        IMP.request_pay({
-            pg: 'kakao',
-            merchant_uid: 'merchant_' + new Date().getTime(),
+            IMP.request_pay({
+                pg: 'kakao',
+                merchant_uid: 'merchant_' + new Date().getTime(),
 
-            name: '주문명 : 주문명 설정',
-            amount: money,
-            buyer_email: 'iamport@siot.do',
-            buyer_name: '구매자이름',
-            buyer_tel: '010-1234-5678',
-            buyer_addr: '하남시 망월동',
-            buyer_postcode: '123-456'
-        }, function (rsp) {
-            console.log(rsp);
-            if (rsp.success) {
-                var msg = '결제가 완료되어 등급이 올라갔습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-                $.ajax({
-                    type: "GET",
-                    url: "/user/point", //충전 금액값을 보낼 url 설정
-                    data: {
-                        "amount" : money
-                    },
-                });
-            } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-            }
-            alert(msg);
-            document.location.href="/"; //alert창 확인 후 이동할 url 설정
+                name: '주문명 : 주문명 설정',
+                amount: money,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '구매자이름',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '하남시 망월동',
+                buyer_postcode: '123-456'
+            }, function (rsp) {
+                console.log(rsp);
+                if (rsp.success) {
+                    var msg = '결제가 완료되어 등급이 올라갔습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                    $.ajax({
+                        type: "GET",
+                        url: "/user/point", //충전 금액값을 보낼 url 설정
+                        data: {
+                            "amount" : money
+                        },
+                    });
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                }
+                alert(msg);
+                document.location.href="/"; //alert창 확인 후 이동할 url 설정
+            });
         });
-    });
-</script>
+    </script>
+</div>
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2021 그린내 All rights reserved.</br>
+            전화 : 010-6284-7384 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:서울특별시 고척동 경인로 445 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신업 신고 제 2021-서울-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :이현민 소분 제2010-0368061호(seonghoo1217@naver.com) / 대표자(성명):이성호</p>
+    </section> <!-- section footer_address -->
+</footer>
 </body>
 </html>

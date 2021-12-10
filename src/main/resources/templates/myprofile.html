@@ -1,34 +1,101 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <link th:href="@{/css/profile.css}" type="text/css">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 <body>
-<h1>마이 프로필</h1>
-<div id="image">
-<th:block th:each="Image:${imageList}">
-    <img th:src="@{${'/display/?fileName=' + Image.folderPath+'/s_'+Image.uuid+'_'+Image.fileName}}"/>
-</th:block>
-</div>
-<div>
-    <span th:text="${accountContext.getUsername()}"/>
-</div>
-<div>
-    <span th:text="${accountContext.getRealname() }"/>
-</div>
-<div>
-    <span th:text="${accountContext.getSex()}"/>
-</div>
-<div>
-    <span th:text="${accountContext.getAge()}"/>
-</div>
-<div>
-    <span th:text="${accountContext.getIntroduce()}"/>
+
+<header>
+    <section id="header_bar">
+        <a id="logo" href="index.jsp"><img th:src="@{/img/logo2.png}" alt="로고" width="120px" height="60px"></a>
+        <nav id="header_menu">
+            <ul>
+                <li style="font-size:large">안녕하세요 <span th:text="${accountContext.getUsername()}"/> 님</li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{user/custom}">회원 목록 편집</a></li>
+                <li><a href="/doLogout">로그아웃</a></li>
+                <li><a th:href="@{/myprofile}">마이 프로필</a></li>
+                <li><a href="#">관리자에게 문의</a></li>
+            </ul>
+        </nav> <!-- 주요 탑메뉴 기능들 -->
+    </section> <!-- section top -->
+    <div class="clear"></div>
+    <nav id="main_menu">
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">내가 누른 추천목록</a></li>
+            <li><a href="#">DM</a></li>
+            <li><a href="#">검색</a></li>
+            <li><a href="#">게시물 탐색</a></li>
+        </ul>
+    </nav> <!-- 메인 메뉴 모음 -->
+    <div class="clear"></div>
+</header>
+<div id="container">
+    <div id="bar">
+        <h1>마이 프로필</h1>
+    </div>
+    <div id="content">
+        <div id="image">
+            <div>프로필 사진</div> <br>
+            <!--img th:src="@{/img/cat.png}" id="profileImage"/-->
+            <th:block th:each="Image:${imageList}">
+                <img th:src="@{${'/display/?fileName=' + Image.folderPath+'/s_'+Image.uuid+'_'+Image.fileName}}"/>
+
+            </th:block>
+        </div>
+        <div>
+            아이디 :
+            <span th:text="${accountContext.getUsername()}"/>
+        </div>
+        <div>
+            이름 :
+            <span th:text="${accountContext.getRealname() }"/>
+        </div>
+        <div>
+            성별 :
+            <span th:text="${accountContext.getSex()}"/>
+        </div>
+        <div>
+            나이 :
+            <span th:text="${accountContext.getAge()}"/>
+        </div>
+        <div>
+            한줄소개 :
+            <span th:text="${accountContext.getIntroduce()}"/>
+        </div>
+
+    </div>
+
 </div>
 
+<footer>
+    <section id="footer_menu_box">
+        <nav id="footer_menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보취급방침</a></li>
+                <li><a href="#">적립금</a></li>
+                <li><a href="#">이용안내</a></li>
+            </ul>
+        </nav>
+    </section> <!-- section footer_menu_box -->
+
+    <section id="footer_address">
+        <p>Copyright ⓒ 2021 그린내 All rights reserved.</br>
+            전화 : 010-6284-7384 근무시간: 오전 10:00 ~ 오후 05:00</br>
+            Contact freely0208@nate.com for more information</br>
+            법인명(상호):이파트너 주소:서울특별시 고척동 경인로 445 </br>
+            사업자 등록번호 안내 [130-42-29900] / 통신업 신고 제 2021-서울-7086호 [사업자정보확인]</br>
+            개인정보관리책임자 :이현민 소분 제2010-0368061호(seonghoo1217@naver.com) / 대표자(성명):이성호</p>
+    </section> <!-- section footer_address -->
+</footer>
 </body>
 </html>

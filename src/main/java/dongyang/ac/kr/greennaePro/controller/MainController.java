@@ -160,7 +160,8 @@ public class MainController {
 
 
     @GetMapping("/credit")
-    public String credit(){
+    public String credit(Model model,@AuthenticationPrincipal AccountContext accountContext){
+        model.addAttribute("accountContext",accountContext);
         return "/credit";
     }
 }

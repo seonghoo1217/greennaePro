@@ -80,7 +80,7 @@ public class BoardController {
         model.addAttribute("dto",dto);
         model.addAttribute("accountContext",accountContext);
 
-        return "board/{id}/boardUpdate";
+        return "board/boardUpdate";
     }
     @PostMapping("/{id}/boardUpdate")
     public String update(@PathVariable("id")Long id,
@@ -88,7 +88,7 @@ public class BoardController {
         log.info("board--Board={}", board.getId());
 
         boardService.boardUpdate(id, board);
-        return "redirect:/board/read/"+id;
+        return "redirect:/board/"+id+"read/";
     }
 
     @GetMapping("/boardList")

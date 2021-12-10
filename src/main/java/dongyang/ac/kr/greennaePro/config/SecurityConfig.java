@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/login/signin","/login/signup", "/display/**").permitAll()//permitAll은 누구나 접근가능
-                    .antMatchers("/","/room","/credit","/myprofile").hasAnyRole("USER","MEMBER","ADMIN")//권한에 따라서 볼수있는 url이 다름
+                    .antMatchers("/","/room","/credit","/myprofile","/getmap").hasAnyRole("USER","MEMBER","ADMIN")//권한에 따라서 볼수있는 url이 다름
                     .antMatchers("/board/**").hasRole("MEMBER")
                     .antMatchers("/user/custom").hasRole("ADMIN")
                 .and()
